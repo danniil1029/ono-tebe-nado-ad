@@ -1,1 +1,331 @@
-/* место для вашего кода */
+/* Шапка: меню, логотип и контакты в трёх колонках. */
+/* Крайние колонки делят свободное место поровну. Средняя занимает ширину логотипа. */
+.header {
+  display: grid;
+  grid-template-columns: 1fr min-content 1fr;
+  align-items: center;
+  padding: 92px 50px 96px;
+}
+
+/* Flexbox выстраивает меню в строку. Кружки задаёт list-style: circle. */
+.header__links-list {
+  display: flex;
+  gap: 32px;
+  list-style: circle;
+  font-size: 18px; 
+  line-height: 1.2;
+}
+
+/* У первого пункта «главная» маркер убирается. */
+.header__links-list-item_no-bullit {
+  list-style: none;
+}
+
+/* white-space: nowrap удерживает текст пункта меню в одной строке. */
+.header__link {
+  white-space: nowrap;
+}
+
+/* По aria-current убираем подчёркивание ссылки на текущую страницу в обоих меню. */
+.header__link[aria-current="page"],
+.footer__menu-link[aria-current="page"] {
+  text-decoration: none;
+}
+
+.header__logo {
+  display: block;
+  width: 148px;
+  height: 105px;
+}
+
+.header__logo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Общий класс для шапки и подвала. Контакты идут столбцом, стандартный курсив убран. */
+.address {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 240px;
+  font-size: 18px;
+  font-style: normal;
+  line-height: 1.35;
+}
+
+.header__address {
+  justify-self: end;
+  width: 240px;
+}
+
+.header__address p {
+  max-width: 220px;
+}
+
+/* Общее затемнение для обложки и карточек. */
+/* inset: 0 растягивает слой на всю обложку или карточку с position: relative.
+ * Чёрный фон с непрозрачностью 60% затемняет фото. pointer-events: none пропускает клики.
+ */
+.overlay {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background-color: rgb(0 0 0 / 60%);
+  pointer-events: none;
+}
+
+/* Фон центрируется. Размер cover заполняет блок с сохранением пропорций изображения. */
+.cover {
+  position: relative;
+  min-height: 757px;
+  padding: 165px 50px 50px;
+  color: #fff;
+  background: #273239 url("../images/cover.jpg") center / cover no-repeat;
+}
+
+/* z-index: 1 поднимает заголовок над затемнением.
+ * Flexbox ставит слова друг под другом, letter-spacing раздвигает буквы.
+ */
+.cover__title {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 100px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 30px;
+  text-transform: uppercase;
+}
+
+.aligned-text {
+  display: block;
+}
+
+/* Первое слово остаётся слева. Второе выравниваем по центру, третье по правому краю. */
+.aligned-text_center {
+  text-align: center;
+}
+
+.aligned-text_right {
+  text-align: right;
+}
+
+/* На последней букве убираем letter-spacing, чтобы строка не заканчивалась лишним отступом. */
+.no-letter-spacing {
+  letter-spacing: 0;
+}
+
+/* space-between разносит описание и кнопку к краям. word-spacing увеличивает расстояние между словами. */
+.cover__description {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 36px;
+  margin-top: 106px;
+}
+
+.cover__description-text {
+  font-size: 22px;
+  line-height: 1.3;
+  word-spacing: 18px;
+  text-transform: uppercase;
+}
+
+/* currentColor берёт цвет рамки из цвета текста. flex-shrink: 0 сохраняет ширину кнопки. */
+.bet-button {
+  flex-shrink: 0;
+  min-width: 256px;
+  border: 1px solid currentColor;
+  padding: 12px 24px;
+  color: inherit;
+  background: transparent;
+  font-size: 22px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.bet-button:hover {
+  background-color: rgb(255 255 255 / 12%);
+}
+
+/* Лоты: карточки равной ширины с переносом на следующую строку. */
+/* scroll-margin-top оставляет 30 px над секцией при переходе по якорю. */
+.lots {
+  margin: 180px 24px 0;
+  scroll-margin-top: 30px;
+}
+
+.lots__heading {
+  margin: 0 0 27px 40px;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+/* flex-wrap переносит карточку при нехватке места.
+ * align-items: stretch выравнивает высоту элементов списка в одной строке.
+ */
+.lots__card-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 25px;
+  list-style: none;
+}
+
+/* min-height задаёт минимальную высоту и позволяет карточке расти при длинном тексте. */
+.lots__card-list-item {
+  width: 334px;
+  min-height: 596px;
+}
+
+/* Ссылка заполняет высоту элемента списка. Подчёркивание задаётся отдельно у заголовка. */
+.card-link {
+  display: block;
+  height: 100%;
+  text-decoration: none;
+}
+
+/* Общие стили карточек. space-between размещает заголовок сверху, описание снизу.
+ * gap задаёт минимальный промежуток между ними.
+ */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 36px;
+  height: 100%;
+  padding: 48px 40px;
+  color: #fff;
+  background-color: #333;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Модификаторы card_type_* выбирают фоновое фото для каждого лота. */
+.card_type_film {
+  background-image: url("../images/card-lot-01.jpg");
+}
+
+.card_type_book {
+  background-image: url("../images/card-lot-02.jpg");
+}
+
+.card_type_picture {
+  background-image: url("../images/card-lot-03.jpg");
+}
+
+/* Заголовок и описание располагаются поверх общего затемнения. */
+.card__title,
+.card__text {
+  position: relative;
+  z-index: 1;
+}
+
+.card__title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-transform: uppercase;
+}
+
+.card__text {
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.lots__look-more-link {
+  display: inline-block;
+  margin: 30px 0 0 40px;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+/* Об аукционе: логотип в левой колонке, текст в правой. */
+/* Левая колонка совпадает по ширине с карточкой лота. Правая занимает оставшееся место. */
+.about {
+  display: grid;
+  grid-template-columns: 334px 1fr;
+  gap: 25px;
+  margin: 120px 24px 0;
+  padding-top: 35px;
+  scroll-margin-top: 30px;
+}
+
+/* Квадрат с border-radius: 50% становится кругом. Flexbox центрирует логотип внутри. */
+.about__logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 240px;
+  height: 240px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background-color: #000;
+}
+
+.about__logo-image {
+  width: 148px;
+  height: 114px;
+}
+
+.about__title {
+  margin: 100px 0;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+/* Вертикальный gap задаёт расстояние между абзацами. */
+.about__text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+/* Подвал: контакты, меню и социальные сети. */
+/* Grid делит подвал на три равные колонки и выравнивает их содержимое по верхнему краю. */
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: start;
+  gap: 24px;
+  margin-top: 180px;
+  padding: 0 50px 88px;
+}
+
+.footer__menu-list {
+  list-style: none;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+/* Flexbox выстраивает значки в ряд у правого края подвала. */
+.footer__social-list {
+  display: flex;
+  justify-content: flex-end;
+  gap: 48px;
+  list-style: none;
+}
+
+.footer__social-link {
+  display: block;
+  width: 48px;
+  height: 48px;
+}

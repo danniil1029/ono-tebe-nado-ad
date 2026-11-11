@@ -1,17 +1,21 @@
+/* Обычное начертание Raleway (400). Браузер пробует WOFF2, затем WOFF.
+ * font-display: swap позволяет показать текст запасным шрифтом, пока загружается Raleway.
+ */
 @font-face {
   font-family: Raleway;
   src:
     url(./Raleway-Regular.woff2) format('woff2'),
     url(./Raleway-Regular.woff) format('woff');
-  font-weight: normal;
+  font-weight: normal; /* 400 */
   font-display: swap;
 }
 
+/* Жирное начертание Raleway (700) используется в заголовках. */
 @font-face {
   font-family: Raleway;
   src:
     url(./Raleway-Bold.woff2) format('woff2'),
     url(./Raleway-Bold.woff) format('woff');
-  font-weight: bold;
+  font-weight: bold; /* 700 */
   font-display: swap;
 }
